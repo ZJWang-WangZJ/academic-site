@@ -4,146 +4,719 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wang Zijun's Scientific Page</title>
+    <meta name="description" content="Academic homepage of Wang Zijun, Lecturer at Chongqing Jiaotong University.">
+    <title>Wang Zijun | Academic Homepage</title>
     <style>
+        :root {
+            --ink: #1d252c;
+            --muted: #5d6975;
+            --paper: #fbfaf7;
+            --panel: #ffffff;
+            --line: #dfe4e2;
+            --accent: #0f7b6c;
+            --accent-soft: #e5f2ee;
+            --warm: #a65f2b;
+            --shadow: 0 18px 45px rgba(35, 48, 58, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            margin: 5% 15%;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            background-color: #fafafa;
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
         }
 
-        /* Grid Layout */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr; /* 左侧一份，右侧两份 */
-            gap: 2em; /* 两侧间距 */
-        }
-
-        /* 调整左侧内容居中对齐 */
-        .left-side {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-image {
-            width: 100%;
-            max-width: 200px;
-            margin: 0 auto;
-            border-radius: 10%;
-        }
-
-        .profile-info h1 {
-            text-align: center;
-            margin-top: 1em;
-        }
-
-        .profile-links {
-            text-align: center;
-            margin-top: 1em;
+        body[data-lang="en"] .zh,
+        body[data-lang="zh"] .en {
+            display: none;
         }
 
         a {
-            color: #007bff;
+            color: var(--accent);
             text-decoration: none;
+            text-underline-offset: 4px;
         }
 
-        a:hover {
+        a:hover,
+        a:focus {
             text-decoration: underline;
         }
 
-        #scholar-logo {
-            vertical-align: middle;
-            height: 24px;
-            margin-right: 5px;
+        button {
+            font: inherit;
         }
-        ul li {
-            line-height: 1.8;
+
+        .page {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 26px 0 18px;
+        }
+
+        .site-title {
+            color: var(--ink);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px 18px;
+            font-size: 0.93rem;
+        }
+
+        .language-toggle {
+            min-width: 70px;
+            min-height: 36px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .language-toggle:hover,
+        .language-toggle:focus {
+            border-color: var(--accent);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(260px, 360px) 1fr;
+            gap: 44px;
+            align-items: center;
+            padding: 52px 0 44px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .portrait-wrap {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 14px;
+        }
+
+        .profile-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--warm);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            line-height: 1.18;
+        }
+
+        h1 {
+            max-width: 780px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 3.25rem;
+            font-weight: 700;
+        }
+
+        .lead {
+            max-width: 730px;
+            margin: 22px 0 0;
+            color: var(--muted);
+            font-size: 1.12rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 18px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(220px, 310px) minmax(0, 1fr);
+            gap: 44px;
+            padding: 44px 0 64px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 24px;
+            align-self: start;
+        }
+
+        .info-panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-panel + .info-panel {
+            margin-top: 18px;
+        }
+
+        .info-panel h2 {
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        .fact-list,
+        .link-list {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .fact-list span,
+        .link-list span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .fact-list strong,
+        .link-list strong {
+            display: block;
+            margin-top: 2px;
+            font-size: 0.98rem;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tag-list li {
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #245c52;
+            font-size: 0.86rem;
+            font-weight: 650;
+        }
+
+        .main-content {
+            display: grid;
+            gap: 42px;
+        }
+
+        section {
+            scroll-margin-top: 24px;
+        }
+
+        section > h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.65rem;
+        }
+
+        section > h2::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--line);
+        }
+
+        .section-copy {
+            max-width: 760px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.03rem;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .timeline li {
+            padding-left: 18px;
+            border-left: 3px solid var(--accent-soft);
+        }
+
+        .timeline strong {
+            display: block;
+            color: var(--ink);
+        }
+
+        .timeline span {
+            display: block;
+            color: var(--muted);
+        }
+
+        .student-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .student-list li {
+            min-height: 150px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+        }
+
+        .student-list strong {
+            display: block;
+            font-size: 1.02rem;
+        }
+
+        .student-year {
+            display: inline-block;
+            margin: 8px 0 10px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #245c52;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .student-list p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .publication-note {
+            margin: -6px 0 18px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .publication-list {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: publications;
+        }
+
+        .publication-list li {
+            position: relative;
+            min-height: 54px;
+            padding: 16px 18px 16px 58px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+        }
+
+        .publication-list li::before {
+            counter-increment: publications;
+            content: counter(publications);
+            position: absolute;
+            top: 17px;
+            left: 18px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 800;
+            line-height: 25px;
+            text-align: center;
+        }
+
+        .publication-list em {
+            color: var(--ink);
+        }
+
+        .publication-title {
+            display: block;
+            margin: 3px 0;
+            color: var(--ink);
+            font-style: italic;
+            font-weight: 650;
+        }
+
+        .journal {
+            display: block;
+            color: var(--muted);
+        }
+
+        .site-footer {
+            border-top: 1px solid var(--line);
+            padding: 24px 0 36px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 820px) {
+            .page {
+                width: min(100% - 28px, 680px);
+            }
+
+            .site-header,
+            .header-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .header-actions {
+                gap: 14px;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+
+            .hero,
+            .content-grid,
+            .student-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                gap: 28px;
+                padding-top: 34px;
+            }
+
+            .portrait-wrap {
+                max-width: 320px;
+            }
+
+            h1 {
+                font-size: 2.35rem;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                line-height: 1.58;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .publication-list li {
+                padding: 54px 15px 15px;
+            }
+
+            .publication-list li::before {
+                top: 15px;
+                left: 15px;
+            }
         }
     </style>
 </head>
 
-<body>
+<body data-lang="en">
+    <div class="page">
+        <header class="site-header">
+            <a class="site-title" href="#">Wang Zijun</a>
+            <div class="header-actions">
+                <nav class="nav" aria-label="Primary navigation">
+                    <a href="#about"><span class="en">About</span><span class="zh">简介</span></a>
+                    <a href="#experience"><span class="en">Experience</span><span class="zh">工作经历</span></a>
+                    <a href="#education"><span class="en">Education</span><span class="zh">教育背景</span></a>
+                    <a href="#students"><span class="en">Students</span><span class="zh">研究生</span></a>
+                    <a href="#publications"><span class="en">Publications</span><span class="zh">论文发表</span></a>
+                    <a href="#contact"><span class="en">Contact</span><span class="zh">联系方式</span></a>
+                </nav>
+                <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch language">
+                    <span class="en">中文</span>
+                    <span class="zh">EN</span>
+                </button>
+            </div>
+        </header>
 
-    <div class="grid-container">
+        <main>
+            <section class="hero" aria-label="Profile introduction">
+                <div class="portrait-wrap">
+                    <img src="wang_zijun.jpg" alt="Portrait of Wang Zijun" class="profile-image">
+                </div>
+                <div>
+                    <p class="eyebrow">
+                        <span class="en">Combustion &middot; Safety &middot; Energy Systems</span>
+                        <span class="zh">燃烧 &middot; 安全 &middot; 能源系统</span>
+                    </p>
+                    <h1>Wang Zijun</h1>
+                    <p class="lead">
+                        <span class="en">Lecturer at the School of Aeronautics, Chongqing Jiaotong University, working on combustion science, explosion safety, hydrogen systems, battery safety, and chemical kinetics.</span>
+                        <span class="zh">重庆交通大学航空学院讲师，主要从事燃烧科学、爆炸安全、氢能安全、锂离子电池安全和化学动力学等方向研究。</span>
+                    </p>
+                    <div class="hero-actions" aria-label="Quick links">
+                        <a class="button" href="#publications"><span class="en">View Publications</span><span class="zh">查看论文</span></a>
+                        <a class="button secondary" href="#contact"><span class="en">Contact</span><span class="zh">联系我</span></a>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Left Side -->
-        <div class="left-side">
-            <img src="wang_zijun.jpg" alt="Wang Zijun's Photo" class="profile-image">
-            <div class="profile-info">
-                <h1>Wang Zijun</h1>
-                <div class="profile-links">
-                    <p><a href="mailto:youremail@example.com">youremail@example.com</a></p>
-                    <p><a href="https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID_HERE">
-                        <img id="scholar-logo" src="https://scholar.google.com/intl/en/scholar/images/1x/scholar_logo_24dp.png" alt="Google Scholar Logo">
-                        Google Scholar
-                    </a></p>
+            <div class="content-grid">
+                <aside class="sidebar" aria-label="Profile details">
+                    <div class="info-panel">
+                        <h2><span class="en">Current Role</span><span class="zh">当前任职</span></h2>
+                        <ul class="fact-list">
+                            <li>
+                                <span><span class="en">Institution</span><span class="zh">单位</span></span>
+                                <strong><a href="http://cqia.cqjtu.edu.cn/info/1295/3762.htm"><span class="en">School of Aeronautics, Chongqing Jiaotong University</span><span class="zh">重庆交通大学航空学院</span></a></strong>
+                            </li>
+                            <li>
+                                <span><span class="en">Position</span><span class="zh">职位</span></span>
+                                <strong><span class="en">Lecturer</span><span class="zh">讲师</span></strong>
+                            </li>
+                            <li>
+                                <span><span class="en">Location</span><span class="zh">地点</span></span>
+                                <strong><span class="en">Chongqing, China</span><span class="zh">中国重庆</span></strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="info-panel">
+                        <h2><span class="en">Research Areas</span><span class="zh">研究方向</span></h2>
+                        <ul class="tag-list">
+                            <li><span class="en">Combustion</span><span class="zh">燃烧</span></li>
+                            <li><span class="en">Explosion limits</span><span class="zh">爆炸极限</span></li>
+                            <li><span class="en">Hydrogen safety</span><span class="zh">氢能安全</span></li>
+                            <li><span class="en">Battery vent gases</span><span class="zh">电池泄放气体</span></li>
+                            <li><span class="en">Chemical kinetics</span><span class="zh">化学动力学</span></li>
+                            <li><span class="en">Spray effects</span><span class="zh">喷雾效应</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="info-panel">
+                        <h2><span class="en">Academic Network</span><span class="zh">学术关系</span></h2>
+                        <ul class="link-list">
+                            <li>
+                                <span>Google Scholar</span>
+                                <strong><a href="https://scholar.google.com/citations?user=BUFHPfIAAAAJ&amp;hl=zh-CN"><span class="en">Meng Qingyang</span><span class="zh">孟庆洋</span></a></strong>
+                            </li>
+                            <li>
+                                <span><span class="en">CQJTU Supervisor Profile</span><span class="zh">重庆交通大学导师风采</span></span>
+                                <strong><a href="http://yjsgl.cqjtu.edu.cn/gmis/dsfc/dsfcgrxx/9bc7468a7b3bc22e4759a29a65c6a62f"><span class="en">Yu Jin</span><span class="zh">禹进</span></a></strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="info-panel" id="contact">
+                        <h2><span class="en">Contact</span><span class="zh">联系方式</span></h2>
+                        <ul class="link-list">
+                            <li>
+                                <span><span class="en">Email</span><span class="zh">邮箱</span></span>
+                                <strong><a href="mailto:zijun.wang@cqjtu.edu.cn">zijun.wang@cqjtu.edu.cn</a></strong>
+                            </li>
+                            <li>
+                                <span>Google Scholar</span>
+                                <strong><a href="https://scholar.google.com.hk/citations?hl=zh-CN&amp;user=TY1vSZoAAAAJ&amp;view_op=list_works"><span class="en">Profile</span><span class="zh">学术主页</span></a></strong>
+                            </li>
+                            <li>
+                                <span><span class="en">Academic Profile</span><span class="zh">学院主页</span></span>
+                                <strong><a href="http://cqia.cqjtu.edu.cn/info/1295/3762.htm">CQJTU</a></strong>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="main-content">
+                    <section id="about">
+                        <h2><span class="en">About</span><span class="zh">简介</span></h2>
+                        <p class="section-copy">
+                            <span class="en">My research focuses on combustion and explosion phenomena in energy systems, with recent work spanning lithium-ion battery vent gases, hydrogen safety, droplet and spray effects, autoignition, and kinetic modeling for practical fuels.</span>
+                            <span class="zh">我的研究聚焦能源系统中的燃烧与爆炸现象，近期工作涉及锂离子电池泄放气体、氢能安全、液滴与喷雾效应、自燃以及实际燃料化学动力学建模等方向。</span>
+                        </p>
+                    </section>
+
+                    <section id="experience">
+                        <h2><span class="en">Experience</span><span class="zh">工作经历</span></h2>
+                        <ul class="timeline">
+                            <li>
+                                <strong><span class="en">Lecturer</span><span class="zh">讲师</span></strong>
+                                <span><span class="en">School of Aeronautics, Chongqing Jiaotong University &middot; 2024.07 - Present</span><span class="zh">重庆交通大学航空学院 &middot; 2024.07 - 至今</span></span>
+                            </li>
+                            <li>
+                                <strong><span class="en">Research Fellow</span><span class="zh">Research Fellow</span></strong>
+                                <span><span class="en">National University of Singapore, Chongqing Research Institute &middot; 2021.10 - 2024.06</span><span class="zh">新加坡国立大学重庆研究院 &middot; 2021.10 - 2024.06</span></span>
+                            </li>
+                            <li>
+                                <strong><span class="en">Postdoctoral Researcher</span><span class="zh">博士后研究人员</span></strong>
+                                <span><span class="en">Chongqing University, School of Aerospace Engineering, in collaboration with National University of Singapore, Chongqing Research Institute &middot; Advisors: Prof. XiaoLong Gou and Prof. Huangwei Zhang &middot; 2021.11 - 2024.06</span><span class="zh">重庆大学航空航天学院，与新加坡国立大学重庆研究院合作 &middot; 合作导师：苟小龙教授、张黄伟教授 &middot; 2021.11 - 2024.06</span></span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="education">
+                        <h2><span class="en">Education</span><span class="zh">教育背景</span></h2>
+                        <ul class="timeline">
+                            <li>
+                                <strong><span class="en">Doctor of Engineering</span><span class="zh">工学博士</span></strong>
+                                <span><span class="en">Chongqing University &middot; Power Engineering and Engineering Thermophysics &middot; Advisor: Prof. XiaoLong Gou &middot; 2015.09 - 2021.06</span><span class="zh">重庆大学 &middot; 动力工程及工程热物理 &middot; 导师：苟小龙教授 &middot; 2015.09 - 2021.06</span></span>
+                            </li>
+                            <li>
+                                <strong><span class="en">Visiting Scholar</span><span class="zh">访问学者</span></strong>
+                                <span><span class="en">Georgia Institute of Technology, School of Aerospace Engineering &middot; Advisor: Prof. Wenting Sun &middot; 2019.12 - 2020.12</span><span class="zh">佐治亚理工学院航空航天工程学院 &middot; 导师：Prof. Wenting Sun &middot; 2019.12 - 2020.12</span></span>
+                            </li>
+                            <li>
+                                <strong><span class="en">Master's Degree</span><span class="zh">硕士</span></strong>
+                                <span><span class="en">Chongqing University &middot; Power Engineering and Engineering Thermophysics &middot; Advisor: Prof. XiaoLong Gou &middot; 2013.09 - 2015.07</span><span class="zh">重庆大学 &middot; 动力工程及工程热物理 &middot; 导师：苟小龙教授 &middot; 2013.09 - 2015.07</span></span>
+                            </li>
+                            <li>
+                                <strong><span class="en">Bachelor of Engineering</span><span class="zh">工学学士</span></strong>
+                                <span><span class="en">Harbin Institute of Technology &middot; Thermal and Power Engineering &middot; 2009.09 - 2013.07</span><span class="zh">哈尔滨工业大学 &middot; 热能与动力工程 &middot; 2009.09 - 2013.07</span></span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="students">
+                        <h2><span class="en">Graduate Students</span><span class="zh">指导研究生</span></h2>
+                        <ul class="student-list">
+                            <li>
+                                <strong><span class="en">Junwen Huang</span><span class="zh">黄俊文</span></strong>
+                                <span class="student-year"><span class="en">M.S. Year 2</span><span class="zh">硕士二年级</span></span>
+                                <p><span class="en">Research on safety issues associated with lithium-ion battery vent gases.</span><span class="zh">从事锂离子电池排气安全相关研究。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Zhenguo Zhong</span><span class="zh">钟振国</span></strong>
+                                <span class="student-year"><span class="en">M.S. Year 2</span><span class="zh">硕士二年级</span></span>
+                                <p><span class="en">Research on water mist suppression of hydrogen explosions.</span><span class="zh">从事水雾抑制氢气爆炸相关研究。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Qiuyi Yang</span><span class="zh">杨秋怡</span></strong>
+                                <span class="student-year"><span class="en">M.S. Year 1</span><span class="zh">硕士一年级</span></span>
+                                <p><span class="en">Research on liquid hydrogen safety and related hazard mitigation.</span><span class="zh">从事液氢安全及相关风险防控研究。</span></p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="publications">
+                        <h2><span class="en">Publications</span><span class="zh">论文发表</span></h2>
+                        <p class="publication-note">
+                            <span class="en">Publication list updated from the Google Scholar data provided in 2026.</span>
+                            <span class="zh">论文列表已根据你提供的 Google Scholar 数据更新。</span>
+                        </p>
+                        <ol class="publication-list">
+                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, W. Wang, X. Gou. <span class="publication-title">Surrogate definition and chemical kinetic modeling for two different jet aviation fuels</span><span class="journal">Energy &amp; Fuels, 30(2), 1375-1382.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, H. Zhang. <span class="publication-title">Explosion limit of hydrogen/oxygen mixture with water vapor addition</span><span class="journal">International Journal of Hydrogen Energy, 50, 772-781.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou. <span class="publication-title">Cool flame characteristics of methane/oxygen mixtures</span><span class="journal">Journal of the Energy Institute, 92(6), 2004-2010.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, C. Zhong. <span class="publication-title">Experimental and kinetic study on the cool flame characteristics of dimethyl ether</span><span class="journal">Energy &amp; Fuels, 33(9), 9205-9214.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, Q. Meng, H. Zhang. <span class="publication-title">Effects of water sprays on hydrogen autoignition in heated air</span><span class="journal">Process Safety and Environmental Protection, 192, 915-925.</span></li>
+                            <li>Q. Meng, <strong>Z. Wang</strong>. <span class="publication-title">On the direct initiation in n-heptane mists considering droplet fragmentation</span><span class="journal">Physics of Fluids, 37(5).</span></li>
+                            <li>J. Yu, J. Feng, <strong>Z. Wang</strong>. <span class="publication-title">Forced ignition of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Journal of Energy Storage, 134, 118251.</span></li>
+                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, X. Gou. <span class="publication-title">Surrogate definition and homogeneous chemical kinetic model for two alkane-rich FACE gasoline fuels</span><span class="journal">Combustion Theory and Modelling, 23(2), 337-352.</span></li>
+                            <li>卓小芳，<strong>王子君</strong>，禹进，苟小龙. <span class="publication-title">管内高压氢气泄漏自燃现象动力学分析</span><span class="journal">工程热物理学报, 2018(12).</span></li>
+                            <li>J. Yu, X. Chen, <strong>Z. Wang</strong>, T. Shen. <span class="publication-title">Explosion limits of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Combustion Theory and Modelling, 30(1), 33-54.</span></li>
+                            <li>禹进，<strong>王子君</strong>，苟小龙. <span class="publication-title">采用核磁共振信息的 FACE 汽油替代燃料机理构建</span><span class="journal">工程热物理学报, 39(6), 1401-1406.</span></li>
+                            <li>禹进，王卫，<strong>王子君</strong>，苟小龙. <span class="publication-title">一种基于分子结构相似的生物柴油替代燃料模型构建方法</span><span class="journal">工程热物理学报, 37(1), 212-216.</span></li>
+                        </ol>
+                    </section>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Right Side -->
-        <div>
-            <section>
-                <h2>About Me</h2>
-                <p>
-                    [Your brief introduction or bio with a focus on your research interests and academic background.]
-                </p>
-            </section>
+        <footer class="site-footer">
+            <span class="en">&copy; 2026 Wang Zijun. Academic homepage.</span>
+            <span class="zh">&copy; 2026 王子君。个人学术主页。</span>
+        </footer>
+    </div>
 
-            <section>
-                <h2>Work Experience</h2>
-                <ul>
-                    <li><strong>Associate Research Fellow</strong>, National University of Singapore, Chongqing Research Institute, 2021.10 - Present</li>
-                    <li><strong>Postdoctoral Researcher</strong>, Chongqing University - School of Aerospace Engineering in collaboration with National University of Singapore, Chongqing Research Institute, Advisors: Professor XiaoLong Gou & Prof. Huangwei Zhang, 2021.11 - Present</li>
-                </ul>
-            </section>
+    <script>
+        (() => {
+            const storageKey = "wang-zijun-homepage-language";
+            const toggle = document.querySelector("[data-lang-toggle]");
+            const setLanguage = (language) => {
+                const nextLanguage = language === "zh" ? "zh" : "en";
+                document.body.dataset.lang = nextLanguage;
+                document.documentElement.lang = nextLanguage === "zh" ? "zh-CN" : "en";
+                if (toggle) {
+                    toggle.setAttribute("aria-pressed", String(nextLanguage === "zh"));
+                }
+                localStorage.setItem(storageKey, nextLanguage);
+            };
 
-            <section>
-                <h2>Education</h2>
-                <ul>
-                    <li><strong>Doctor of Engineering</strong>, Chongqing University, Power Engineering and Engineering Thermophysics, Advisor: Professor XiaoLong Gou, 2015.09 - 2021.06</li>
-                    <li><strong>Visiting Scholar</strong>, Georgia Institute of Technology, School of Aerospace Engineering, Advisor: Prof Wenting Sun, 2019.12 - 2020.12</li>
-                    <li><strong>Master's Degree</strong>, Chongqing University, Power Engineering and Engineering Thermophysics, Advisor: Professor XiaoLong Gou, 2013.09 - 2015.07</li>
-                    <li><strong>Bachelor of Engineering</strong>, Harbin Institute of Technology, Thermal and Power Engineering, 2009.09 - 2013.07</li>
-                </ul>
-            </section>
+            setLanguage(localStorage.getItem(storageKey) || "en");
 
-            <section>
-                <h2>Journal Publications</h2>
-                <ol>
-                    <li><strong>Zijun Wang</strong>, Xiaolong Gou, Huangwei Zhang*. <em>Explosion limit of hydrogen/oxygen mixture with water vapor addition</em>. International Journal of Hydrogen Energy, 2023. (IF: 7.2)</li>
-                    
-                    <li><strong>Zijun Wang</strong>, Xiaolong Gou*, Chen Zhong. <em>Experimental and Kinetic Study on the Cool Flame Characteristics of Dimethyl Ether</em>. Energy & Fuels, 2019, 33(9). (IF: 5.3)</li>
-                    
-                    <li><strong>Zijun Wang</strong>, Xiaolong Gou*. <em>Cool flame characteristics of methane/oxygen mixtures</em>. Journal of the Energy Institute, 2019, 92(6): 2004-2010. (IF: 5.7)</li>
-                    
-                    <li>Jin Yu, <strong>Zijun Wang</strong>, Xiaofang Zhuo, et al. <em>Surrogate definition and homogeneous chemical kinetic model for two alkane-rich FACE gasoline fuels</em>. Combustion Theory and Modelling, 2019, 23(2): 337-352. (IF: 1.3)</li>
-                    
-                    <li>Jin Yu, <strong>Zijun Wang</strong>, Xiaofang Zhuo, et al. <em>Surrogate Definition and Chemical Kinetic Modelling for Two Different Jet Aviation Fuels</em>. Energy & Fuels, 2016, 30(2): 1375-1383. (IF: 5.3)</li>
-                    
-                    <li><strong>Zijun Wang</strong>, Jin Yu, Wei Wang, Xiaolong Gou*. <em>Cool flame stabilized by ozone and methanol</em>. The 10th ASPACC, Beijing, July 19-22, 2015. (EI Indexed)</li>
-                    
-                    <li>禹进，<strong>王子�</strong>，苟小龙*. <em>采用核磁共振信息的FACE汽油替代燃料机理构建</em>. 工程热物理学报，2018, 39(06):229-234. (EI 收录)</li>
-                    
-                    <li>卓小芳，<strong>王子�</strong>，禹�?�? <em>管内高压氢气泄漏自燃现象动力学分�</em>. 工程热物理学报，2018, 39(12):217-221. (EI 收录)</li>
-                    
-                    <li>禹进，王卫，<strong>王子�</strong>，苟小龙*. <em>一种基于分子结构相似的生物柴油模型燃料模型构建方法</em>. 工程热物理学�? 2016(1):212-216. (EI 收录)</li>
-                    
-                    <li><strong>Zijun Wang</strong>, Xiaolong Gou, Huangwei Zhang*. <em>Inhibition of water mists for hydrogen autoignition in hot air: a kinetic study</em>. (In preparing)</li>
-                </ol>
-            </section>
-
-        </div> <!-- End of Right Side -->
-
-    </div> <!-- End of Grid Container -->
-
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    setLanguage(document.body.dataset.lang === "zh" ? "en" : "zh");
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
-
-"<!-- trigger rebuild -->" 
