@@ -61,11 +61,17 @@
         }
 
         .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 24px;
             padding: 26px 0 18px;
+            background: rgba(251, 250, 247, 0.96);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
         }
 
         .site-title {
@@ -112,7 +118,6 @@
             gap: 44px;
             align-items: center;
             padding: 52px 0 44px;
-            border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
         }
 
@@ -352,6 +357,114 @@
             font-size: 0.95rem;
         }
 
+        .project-list,
+        .course-list {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .project-list li,
+        .course-list li {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+        }
+
+        .project-list strong,
+        .course-list strong {
+            display: block;
+            font-size: 1.02rem;
+        }
+
+        .project-meta,
+        .material-status {
+            display: inline-block;
+            margin: 8px 0 10px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #245c52;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .material-link {
+            color: #245c52;
+        }
+
+        .project-list p,
+        .course-list p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .teaching-note {
+            margin: -6px 0 18px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .comment-form {
+            display: grid;
+            gap: 14px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .form-field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .form-field label {
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 10px 12px;
+            background: #ffffff;
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .form-field textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-note {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
         .publication-note {
             margin: -6px 0 18px;
             color: var(--muted);
@@ -438,7 +551,8 @@
 
             .hero,
             .content-grid,
-            .student-list {
+            .student-list,
+            .form-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -496,6 +610,9 @@
                     <a href="#experience"><span class="en">Experience</span><span class="zh">工作经历</span></a>
                     <a href="#education"><span class="en">Education</span><span class="zh">教育背景</span></a>
                     <a href="#students"><span class="en">Students</span><span class="zh">研究生</span></a>
+                    <a href="#projects"><span class="en">Projects</span><span class="zh">科研项目</span></a>
+                    <a href="#teaching"><span class="en">Teaching</span><span class="zh">教学</span></a>
+                    <a href="#comments"><span class="en">Comments</span><span class="zh">建议</span></a>
                     <a href="#publications"><span class="en">Publications</span><span class="zh">论文发表</span></a>
                     <a href="#contact"><span class="en">Contact</span><span class="zh">联系方式</span></a>
                 </nav>
@@ -564,12 +681,16 @@
                         <h2><span class="en">Academic Network</span><span class="zh">学术关系</span></h2>
                         <ul class="link-list">
                             <li>
-                                <span>Google Scholar</span>
                                 <strong><a href="https://scholar.google.com/citations?user=BUFHPfIAAAAJ&amp;hl=zh-CN"><span class="en">Meng Qingyang</span><span class="zh">孟庆洋</span></a></strong>
                             </li>
                             <li>
-                                <span><span class="en">CQJTU Supervisor Profile</span><span class="zh">重庆交通大学导师风采</span></span>
                                 <strong><a href="http://yjsgl.cqjtu.edu.cn/gmis/dsfc/dsfcgrxx/9bc7468a7b3bc22e4759a29a65c6a62f"><span class="en">Yu Jin</span><span class="zh">禹进</span></a></strong>
+                            </li>
+                            <li>
+                                <strong><a href="https://cte.cqu.edu.cn/szdw/jslb/gxl.htm"><span class="en">Gou Xiaolong</span><span class="zh">苟小龙</span></a></strong>
+                            </li>
+                            <li>
+                                <strong><a href="https://blog.nus.edu.sg/huangwei/"><span class="en">Zhang Huangwei</span><span class="zh">张黄伟</span></a></strong>
                             </li>
                         </ul>
                     </div>
@@ -663,6 +784,52 @@
                         </ul>
                     </section>
 
+                    <section id="projects">
+                        <h2><span class="en">Research Projects</span><span class="zh">科研项目</span></h2>
+                        <ul class="project-list">
+                            <li>
+                                <strong><span class="en">Chongqing Postdoctoral International Academic Exchange Program</span><span class="zh">重庆市博士后国际学术交流计划</span></strong>
+                                <span class="project-meta"><span class="en">PI · 2022-2023 · RMB 150,000</span><span class="zh">主持 · 2022-2023 · 15万元</span></span>
+                                <p><span class="en">Supported international academic exchange and research collaboration during the postdoctoral stage.</span><span class="zh">支持博士后阶段国际学术交流与科研合作。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Chongqing Postdoctoral Natural Science Foundation</span><span class="zh">重庆市博士后自然科学基金</span></strong>
+                                <span class="project-meta"><span class="en">PI · 2022-2024 · RMB 100,000</span><span class="zh">主持 · 2022-2024 · 10万元</span></span>
+                                <p><span class="en">Focused on fundamental research related to combustion, explosion safety, and energy systems.</span><span class="zh">围绕燃烧、爆炸安全与能源系统相关基础问题开展研究。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Research Start-up Fund, Chongqing Jiaotong University</span><span class="zh">重庆交通大学科研启动经费</span></strong>
+                                <span class="project-meta"><span class="en">PI · 2024-2026 · RMB 150,000</span><span class="zh">主持 · 2024-2026 · 15万元</span></span>
+                                <p><span class="en">Supports the development of research on energy safety, hydrogen systems, and aviation-related power technologies.</span><span class="zh">支持能源安全、氢能系统与航空动力相关方向的研究工作开展。</span></p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="teaching">
+                        <h2><span class="en">Teaching</span><span class="zh">教学相关</span></h2>
+                        <p class="teaching-note">
+                            <span class="en">Course materials are shared for reference only. They are being continuously improved, and comments or suggestions are welcome.</span>
+                            <span class="zh">课程资料仅作学习交流参考，内容持续优化中，欢迎大家提出意见和建议。</span>
+                        </p>
+                        <ul class="course-list">
+                            <li>
+                                <strong><span class="en">Design and Analysis of Aviation Electric Propulsion Systems</span><span class="zh">航空电动动力系统设计与分析</span></strong>
+                                <span class="material-status"><a class="material-link" href="materials/aviation-electric-propulsion.zip" download><span class="en">Download course materials</span><span class="zh">下载课件</span></a></span>
+                                <p><span class="en">Materials are shared for reference and will continue to be improved. Suggestions are welcome.</span><span class="zh">课件仅作学习交流参考，内容持续优化中，欢迎大家提出意见和建议。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Hydrogen Power Systems</span><span class="zh">氢动力系统</span></strong>
+                                <span class="material-status"><span class="en">Course materials to be uploaded</span><span class="zh">课件待上传</span></span>
+                                <p><span class="en">Course materials will be shared as a reference and will continue to be refined with teaching practice.</span><span class="zh">后续将上传课程课件，并结合教学实践持续完善。</span></p>
+                            </li>
+                            <li>
+                                <strong><span class="en">Aviation Power Simulation and Engineering Practice</span><span class="zh">航空动力仿真与工程实践</span></strong>
+                                <span class="material-status"><a class="material-link" href="materials/aviation-power-simulation-practice.pdf" download><span class="en">Download course materials</span><span class="zh">下载课件</span></a></span>
+                                <p><span class="en">Materials are shared for reference, with emphasis on simulation skills and engineering-oriented practice. Suggestions are welcome.</span><span class="zh">课件仅作学习交流参考，重点服务于仿真能力培养与工程实践训练，内容持续优化中，欢迎大家提出意见和建议。</span></p>
+                            </li>
+                        </ul>
+                    </section>
+
                     <section id="publications">
                         <h2><span class="en">Publications</span><span class="zh">论文发表</span></h2>
                         <p class="publication-note">
@@ -670,19 +837,57 @@
                             <span class="zh">论文列表已根据你提供的 Google Scholar 数据更新。</span>
                         </p>
                         <ol class="publication-list">
-                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, W. Wang, X. Gou. <span class="publication-title">Surrogate definition and chemical kinetic modeling for two different jet aviation fuels</span><span class="journal">Energy &amp; Fuels, 30(2), 1375-1382.</span></li>
-                            <li><strong>Z. Wang</strong>, X. Gou, H. Zhang. <span class="publication-title">Explosion limit of hydrogen/oxygen mixture with water vapor addition</span><span class="journal">International Journal of Hydrogen Energy, 50, 772-781.</span></li>
-                            <li><strong>Z. Wang</strong>, X. Gou. <span class="publication-title">Cool flame characteristics of methane/oxygen mixtures</span><span class="journal">Journal of the Energy Institute, 92(6), 2004-2010.</span></li>
-                            <li><strong>Z. Wang</strong>, X. Gou, C. Zhong. <span class="publication-title">Experimental and kinetic study on the cool flame characteristics of dimethyl ether</span><span class="journal">Energy &amp; Fuels, 33(9), 9205-9214.</span></li>
-                            <li><strong>Z. Wang</strong>, X. Gou, Q. Meng, H. Zhang. <span class="publication-title">Effects of water sprays on hydrogen autoignition in heated air</span><span class="journal">Process Safety and Environmental Protection, 192, 915-925.</span></li>
-                            <li>Q. Meng, <strong>Z. Wang</strong>. <span class="publication-title">On the direct initiation in n-heptane mists considering droplet fragmentation</span><span class="journal">Physics of Fluids, 37(5).</span></li>
-                            <li>J. Yu, J. Feng, <strong>Z. Wang</strong>. <span class="publication-title">Forced ignition of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Journal of Energy Storage, 134, 118251.</span></li>
-                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, X. Gou. <span class="publication-title">Surrogate definition and homogeneous chemical kinetic model for two alkane-rich FACE gasoline fuels</span><span class="journal">Combustion Theory and Modelling, 23(2), 337-352.</span></li>
+                            <li>J. Yu, X. Chen, <strong>Z. Wang</strong>, T. Shen. <span class="publication-title">Explosion limits of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Combustion Theory and Modelling, 2026, 30(1), 33-54.</span></li>
+                            <li>Q. Meng, <strong>Z. Wang</strong>. <span class="publication-title">On the direct initiation in n-heptane mists considering droplet fragmentation</span><span class="journal">Physics of Fluids, 2025, 37(5).</span></li>
+                            <li>J. Yu, J. Feng, <strong>Z. Wang</strong>. <span class="publication-title">Forced ignition of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Journal of Energy Storage, 2025, 134, 118251.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, H. Zhang. <span class="publication-title">Explosion limit of hydrogen/oxygen mixture with water vapor addition</span><span class="journal">International Journal of Hydrogen Energy, 2024, 50, 772-781.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, Q. Meng, H. Zhang. <span class="publication-title">Effects of water sprays on hydrogen autoignition in heated air</span><span class="journal">Process Safety and Environmental Protection, 2024, 192, 915-925.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou. <span class="publication-title">Cool flame characteristics of methane/oxygen mixtures</span><span class="journal">Journal of the Energy Institute, 2019, 92(6), 2004-2010.</span></li>
+                            <li><strong>Z. Wang</strong>, X. Gou, C. Zhong. <span class="publication-title">Experimental and kinetic study on the cool flame characteristics of dimethyl ether</span><span class="journal">Energy &amp; Fuels, 2019, 33(9), 9205-9214.</span></li>
+                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, X. Gou. <span class="publication-title">Surrogate definition and homogeneous chemical kinetic model for two alkane-rich FACE gasoline fuels</span><span class="journal">Combustion Theory and Modelling, 2019, 23(2), 337-352.</span></li>
                             <li>卓小芳，<strong>王子君</strong>，禹进，苟小龙. <span class="publication-title">管内高压氢气泄漏自燃现象动力学分析</span><span class="journal">工程热物理学报, 2018(12).</span></li>
-                            <li>J. Yu, X. Chen, <strong>Z. Wang</strong>, T. Shen. <span class="publication-title">Explosion limits of lithium-ion batteries vent gases containing dimethyl carbonate and di (2, 2, 2-trifluoroethyl) carbonate</span><span class="journal">Combustion Theory and Modelling, 30(1), 33-54.</span></li>
-                            <li>禹进，<strong>王子君</strong>，苟小龙. <span class="publication-title">采用核磁共振信息的 FACE 汽油替代燃料机理构建</span><span class="journal">工程热物理学报, 39(6), 1401-1406.</span></li>
-                            <li>禹进，王卫，<strong>王子君</strong>，苟小龙. <span class="publication-title">一种基于分子结构相似的生物柴油替代燃料模型构建方法</span><span class="journal">工程热物理学报, 37(1), 212-216.</span></li>
+                            <li>禹进，<strong>王子君</strong>，苟小龙. <span class="publication-title">采用核磁共振信息的 FACE 汽油替代燃料机理构建</span><span class="journal">工程热物理学报, 2018, 39(6), 1401-1406.</span></li>
+                            <li>J. Yu, <strong>Z. Wang</strong>, X. Zhuo, W. Wang, X. Gou. <span class="publication-title">Surrogate definition and chemical kinetic modeling for two different jet aviation fuels</span><span class="journal">Energy &amp; Fuels, 2016, 30(2), 1375-1382.</span></li>
+                            <li>禹进，王卫，<strong>王子君</strong>，苟小龙. <span class="publication-title">一种基于分子结构相似的生物柴油替代燃料模型构建方法</span><span class="journal">工程热物理学报, 2016, 37(1), 212-216.</span></li>
                         </ol>
+                    </section>
+
+                    <section id="comments">
+                        <h2><span class="en">Comments</span><span class="zh">建议反馈</span></h2>
+                        <p class="teaching-note">
+                            <span class="en">Comments on course materials, teaching content, or the homepage are welcome. The form will open your email client and send the message to me.</span>
+                            <span class="zh">欢迎对课程资料、教学内容或网页提出建议。填写后将调用邮件客户端发送给我。</span>
+                        </p>
+                        <form class="comment-form" data-comment-form>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label for="comment-name"><span class="en">Name</span><span class="zh">姓名</span></label>
+                                    <input id="comment-name" name="name" type="text" autocomplete="name">
+                                </div>
+                                <div class="form-field">
+                                    <label for="comment-email"><span class="en">Email</span><span class="zh">邮箱</span></label>
+                                    <input id="comment-email" name="email" type="email" autocomplete="email">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="comment-topic"><span class="en">Topic</span><span class="zh">建议主题</span></label>
+                                <select id="comment-topic" name="topic">
+                                    <option value="Aviation Electric Propulsion / 航空电动动力系统设计与分析">Aviation Electric Propulsion / 航空电动动力系统设计与分析</option>
+                                    <option value="Hydrogen Power Systems / 氢动力系统">Hydrogen Power Systems / 氢动力系统</option>
+                                    <option value="Aviation Power Simulation / 航空动力仿真与工程实践">Aviation Power Simulation / 航空动力仿真与工程实践</option>
+                                    <option value="Homepage / 网页内容">Homepage / 网页内容</option>
+                                    <option value="Other / 其他">Other / 其他</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="comment-message"><span class="en">Comment</span><span class="zh">建议内容</span></label>
+                                <textarea id="comment-message" name="message" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="button" type="submit"><span class="en">Send Comment</span><span class="zh">发送建议</span></button>
+                                <p class="form-note"><span class="en">Messages are sent to zijun.wang@cqjtu.edu.cn.</span><span class="zh">建议将发送至 zijun.wang@cqjtu.edu.cn。</span></p>
+                            </div>
+                        </form>
                     </section>
                 </div>
             </div>
@@ -713,6 +918,28 @@
             if (toggle) {
                 toggle.addEventListener("click", () => {
                     setLanguage(document.body.dataset.lang === "zh" ? "en" : "zh");
+                });
+            }
+
+            const commentForm = document.querySelector("[data-comment-form]");
+            if (commentForm) {
+                commentForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(commentForm);
+                    const name = formData.get("name") || "Anonymous";
+                    const email = formData.get("email") || "Not provided";
+                    const topic = formData.get("topic") || "General comment";
+                    const message = formData.get("message") || "";
+                    const subject = `[Homepage Comment] ${topic}`;
+                    const body = [
+                        `Name: ${name}`,
+                        `Email: ${email}`,
+                        `Topic: ${topic}`,
+                        "",
+                        "Comment:",
+                        message
+                    ].join("\n");
+                    window.location.href = `mailto:zijun.wang@cqjtu.edu.cn?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 });
             }
         })();
