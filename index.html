@@ -63,7 +63,6 @@
         a,
         button,
         label,
-        .signal-card,
         .info-panel,
         .publication-title {
             text-wrap: pretty;
@@ -210,34 +209,6 @@
             margin: 18px 0 0;
             color: var(--muted);
             font-size: 1.13rem;
-        }
-
-        .hero-signal {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin-top: 22px;
-        }
-
-        .signal-card {
-            min-height: 82px;
-            padding: 13px 14px;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            background: color-mix(in srgb, var(--panel) 82%, transparent);
-        }
-
-        .signal-card strong {
-            display: block;
-            font-size: 0.92rem;
-        }
-
-        .signal-card span {
-            display: block;
-            margin-top: 4px;
-            color: var(--muted);
-            font-size: 0.82rem;
-            line-height: 1.45;
         }
 
         .hero-actions {
@@ -676,7 +647,6 @@
             .hero,
             .content-grid,
             .student-list,
-            .hero-signal,
             .form-grid {
                 grid-template-columns: 1fr;
             }
@@ -770,20 +740,6 @@
                         <span class="en">Lecturer at the School of Aeronautics, Chongqing Jiaotong University, working on combustion science, explosion safety, hydrogen energy systems, battery safety, and chemical kinetics for aviation-oriented energy technologies.</span>
                         <span class="zh">重庆交通大学航空学院讲师，围绕航空能源与动力系统中的燃烧、爆炸与安全问题开展研究，重点关注氢能安全、锂离子电池排气风险、喷雾抑爆、自燃特性和燃料化学动力学建模。</span>
                     </p>
-                    <div class="hero-signal" aria-label="Research signals">
-                        <div class="signal-card">
-                            <strong><span class="en">Hydrogen Safety</span><span class="zh">氢能安全</span></strong>
-                            <span><span class="en">Explosion limits, ignition, and mitigation.</span><span class="zh">爆炸极限、自燃与风险抑制。</span></span>
-                        </div>
-                        <div class="signal-card">
-                            <strong><span class="en">Battery Venting</span><span class="zh">电池排气</span></strong>
-                            <span><span class="en">Venting behavior, ignition risk, and safety assessment.</span><span class="zh">排气行为、点火风险与安全评估。</span></span>
-                        </div>
-                        <div class="signal-card">
-                            <strong><span class="en">Aviation Power</span><span class="zh">航空动力</span></strong>
-                            <span><span class="en">Safety-first energy systems.</span><span class="zh">安全优先的能源与动力系统。</span></span>
-                        </div>
-                    </div>
                     <div class="hero-actions" aria-label="Quick links">
                         <a class="button" href="#publications"><span class="en">View Publications</span><span class="zh">查看论文</span></a>
                         <a class="button secondary" href="#contact"><span class="en">Contact</span><span class="zh">联系我</span></a>
