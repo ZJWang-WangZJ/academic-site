@@ -8,15 +8,20 @@
     <title>Wang Zijun | Academic Homepage</title>
     <style>
         :root {
-            --ink: #1d252c;
-            --muted: #5d6975;
-            --paper: #fbfaf7;
+            color-scheme: light;
+            --ink: #0b1f3a;
+            --muted: #51677c;
+            --paper: #f7fafc;
             --panel: #ffffff;
-            --line: #dfe4e2;
-            --accent: #0f7b6c;
-            --accent-soft: #e5f2ee;
-            --warm: #a65f2b;
-            --shadow: 0 18px 45px rgba(35, 48, 58, 0.08);
+            --line: #d7e7f2;
+            --accent: #128db8;
+            --accent-strong: #0b1f3a;
+            --accent-bright: #2ec7ff;
+            --accent-soft: #e7f8ff;
+            --safety: #ff7a3d;
+            --safety-soft: #fff0e8;
+            --runway: #243e58;
+            --shadow: 0 10px 28px rgba(11, 31, 58, 0.07);
         }
 
         * {
@@ -30,14 +35,38 @@
         body {
             margin: 0;
             color: var(--ink);
-            background: var(--paper);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                linear-gradient(180deg, #eef8fc 0, #f7fafc 360px),
+                var(--paper);
+            background-size: auto;
+            font-family: Inter, "IBM Plex Sans", "Source Sans 3", "Noto Sans SC", "Source Han Sans SC", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.65;
+            transition: background 180ms ease, color 180ms ease;
         }
 
         body[data-lang="en"] .zh,
         body[data-lang="zh"] .en {
             display: none;
+        }
+
+        .zh {
+            word-break: auto-phrase;
+            line-break: loose;
+            text-wrap: pretty;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        li,
+        a,
+        button,
+        label,
+        .signal-card,
+        .info-panel,
+        .publication-title {
+            text-wrap: pretty;
         }
 
         a {
@@ -56,7 +85,7 @@
         }
 
         .page {
-            width: min(1120px, calc(100% - 40px));
+            width: min(1040px, calc(100% - 44px));
             margin: 0 auto;
         }
 
@@ -68,17 +97,18 @@
             align-items: center;
             justify-content: space-between;
             gap: 24px;
-            padding: 26px 0 18px;
-            background: rgba(251, 250, 247, 0.96);
-            border-bottom: 1px solid var(--line);
+            padding: 18px 0 14px;
+            background: color-mix(in srgb, var(--paper) 94%, transparent);
+            border-bottom: 0;
             backdrop-filter: blur(10px);
         }
 
         .site-title {
             color: var(--ink);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 0.96rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
 
         .header-actions {
@@ -88,12 +118,19 @@
             gap: 18px;
         }
 
+        .control-strip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .nav {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-end;
-            gap: 10px 18px;
-            font-size: 0.93rem;
+            gap: 8px 16px;
+            font-size: 0.91rem;
+            font-weight: 650;
         }
 
         .language-toggle {
@@ -114,34 +151,42 @@
 
         .hero {
             display: grid;
-            grid-template-columns: minmax(260px, 360px) 1fr;
-            gap: 44px;
-            align-items: center;
-            padding: 52px 0 44px;
+            grid-template-columns: 190px minmax(0, 1fr);
+            gap: 34px;
+            align-items: end;
+            margin-top: 28px;
+            padding: 0 0 34px;
             border-bottom: 1px solid var(--line);
         }
 
         .portrait-wrap {
+            position: relative;
+            width: 180px;
+            justify-self: start;
             background: var(--panel);
             border: 1px solid var(--line);
             border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 14px;
+            box-shadow: none;
+            padding: 8px;
+        }
+
+        .portrait-wrap::after {
+            display: none;
         }
 
         .profile-image {
             display: block;
             width: 100%;
-            aspect-ratio: 4 / 5;
+            height: 228px;
             object-fit: cover;
             border-radius: 6px;
         }
 
         .eyebrow {
             margin: 0 0 10px;
-            color: var(--warm);
+            color: var(--safety);
             font-size: 0.82rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0;
             text-transform: uppercase;
         }
@@ -155,23 +200,51 @@
 
         h1 {
             max-width: 780px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 3.25rem;
-            font-weight: 700;
+            font-size: clamp(2.5rem, 6vw, 5.3rem);
+            font-weight: 850;
+            letter-spacing: -0.02em;
         }
 
         .lead {
-            max-width: 730px;
-            margin: 22px 0 0;
+            max-width: 800px;
+            margin: 18px 0 0;
             color: var(--muted);
-            font-size: 1.12rem;
+            font-size: 1.13rem;
+        }
+
+        .hero-signal {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .signal-card {
+            min-height: 82px;
+            padding: 13px 14px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: color-mix(in srgb, var(--panel) 82%, transparent);
+        }
+
+        .signal-card strong {
+            display: block;
+            font-size: 0.92rem;
+        }
+
+        .signal-card span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.45;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 28px;
+            margin-top: 24px;
         }
 
         .button {
@@ -194,8 +267,8 @@
 
         .content-grid {
             display: grid;
-            grid-template-columns: minmax(220px, 310px) minmax(0, 1fr);
-            gap: 44px;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 48px;
             padding: 44px 0 64px;
         }
 
@@ -206,15 +279,16 @@
         }
 
         .info-panel {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 22px;
-            box-shadow: var(--shadow);
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--line);
+            border-radius: 0;
+            padding: 0 0 18px;
+            box-shadow: none;
         }
 
         .info-panel + .info-panel {
-            margin-top: 18px;
+            margin-top: 24px;
         }
 
         .info-panel h2 {
@@ -258,14 +332,14 @@
             padding: 5px 10px;
             border-radius: 999px;
             background: var(--accent-soft);
-            color: #245c52;
+            color: #155b68;
             font-size: 0.86rem;
             font-weight: 650;
         }
 
         .main-content {
             display: grid;
-            gap: 42px;
+            gap: 24px;
         }
 
         section {
@@ -276,36 +350,46 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 18px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.65rem;
+            margin-bottom: 16px;
+            font-size: 1.18rem;
+            font-weight: 850;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
 
         section > h2::after {
             content: "";
             height: 1px;
             flex: 1;
-            background: var(--line);
+            background: linear-gradient(90deg, var(--line), transparent);
         }
 
         .section-copy {
             max-width: 760px;
             margin: 0;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+            background: color-mix(in srgb, var(--panel) 82%, transparent);
             color: var(--muted);
             font-size: 1.03rem;
         }
 
         .timeline {
             display: grid;
-            gap: 18px;
+            gap: 14px;
             margin: 0;
             padding: 0;
             list-style: none;
         }
 
         .timeline li {
-            padding-left: 18px;
-            border-left: 3px solid var(--accent-soft);
+            padding: 17px 18px;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--safety);
+            border-radius: 6px;
+            background: var(--panel);
         }
 
         .timeline strong {
@@ -331,8 +415,9 @@
             min-height: 150px;
             padding: 18px;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--panel);
+            box-shadow: none;
         }
 
         .student-list strong {
@@ -346,15 +431,41 @@
             padding: 3px 9px;
             border-radius: 999px;
             background: var(--accent-soft);
-            color: #245c52;
+            color: #155b68;
             font-size: 0.8rem;
             font-weight: 700;
+        }
+
+        .student-advisor {
+            display: block;
+            margin: -2px 0 10px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            font-weight: 650;
         }
 
         .student-list p {
             margin: 0;
             color: var(--muted);
             font-size: 0.95rem;
+        }
+
+        .admission-note {
+            margin: 0 0 16px;
+            padding: 16px 18px;
+            border: 1px solid color-mix(in srgb, var(--safety) 42%, var(--line));
+            border-left: 4px solid var(--safety);
+            border-radius: 6px;
+            background: var(--safety-soft);
+            color: var(--ink);
+            font-size: 0.98rem;
+        }
+
+        .admission-note strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--ink);
+            font-size: 1rem;
         }
 
         .project-list,
@@ -370,8 +481,9 @@
         .course-list li {
             padding: 18px;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--panel);
+            box-shadow: none;
         }
 
         .project-list strong,
@@ -387,13 +499,13 @@
             padding: 3px 9px;
             border-radius: 999px;
             background: var(--accent-soft);
-            color: #245c52;
+            color: #155b68;
             font-size: 0.8rem;
             font-weight: 700;
         }
 
         .material-link {
-            color: #245c52;
+            color: #155b68;
         }
 
         .project-list p,
@@ -414,8 +526,9 @@
             gap: 14px;
             padding: 18px;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--panel);
+            box-shadow: none;
         }
 
         .form-grid {
@@ -485,8 +598,9 @@
             min-height: 54px;
             padding: 16px 18px 16px 58px;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--panel);
+            box-shadow: none;
         }
 
         .publication-list li::before {
@@ -516,6 +630,11 @@
             color: var(--ink);
             font-style: italic;
             font-weight: 650;
+        }
+
+        .publication-title:hover,
+        .publication-title:focus {
+            color: var(--accent);
         }
 
         .journal {
@@ -549,9 +668,15 @@
                 justify-content: flex-start;
             }
 
+            .control-strip {
+                width: 100%;
+                justify-content: space-between;
+            }
+
             .hero,
             .content-grid,
             .student-list,
+            .hero-signal,
             .form-grid {
                 grid-template-columns: 1fr;
             }
@@ -562,7 +687,7 @@
             }
 
             .portrait-wrap {
-                max-width: 320px;
+                max-width: 230px;
             }
 
             h1 {
@@ -586,6 +711,11 @@
 
             .button {
                 width: 100%;
+            }
+
+            .control-strip {
+                align-items: stretch;
+                flex-direction: column;
             }
 
             .publication-list li {
@@ -616,10 +746,12 @@
                     <a href="#comments"><span class="en">Comments</span><span class="zh">建议</span></a>
                     <a href="#contact"><span class="en">Contact</span><span class="zh">联系方式</span></a>
                 </nav>
-                <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch language">
-                    <span class="en">中文</span>
-                    <span class="zh">EN</span>
-                </button>
+                <div class="control-strip">
+                    <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch language">
+                        <span class="en">中文</span>
+                        <span class="zh">EN</span>
+                    </button>
+                </div>
             </div>
         </header>
 
@@ -635,9 +767,23 @@
                     </p>
                     <h1>Wang Zijun</h1>
                     <p class="lead">
-                        <span class="en">Lecturer at the School of Aeronautics, Chongqing Jiaotong University, working on combustion science, explosion safety, hydrogen systems, battery safety, and chemical kinetics.</span>
-                        <span class="zh">重庆交通大学航空学院讲师，主要从事燃烧科学、爆炸安全、氢能安全、锂离子电池安全和化学动力学等方向研究。</span>
+                        <span class="en">Lecturer at the School of Aeronautics, Chongqing Jiaotong University, working on combustion science, explosion safety, hydrogen energy systems, battery safety, and chemical kinetics for aviation-oriented energy technologies.</span>
+                        <span class="zh">重庆交通大学航空学院讲师，围绕航空能源与动力系统中的燃烧、爆炸与安全问题开展研究，重点关注氢能安全、锂离子电池排气风险、喷雾抑爆、自燃特性和燃料化学动力学建模。</span>
                     </p>
+                    <div class="hero-signal" aria-label="Research signals">
+                        <div class="signal-card">
+                            <strong><span class="en">Hydrogen Safety</span><span class="zh">氢能安全</span></strong>
+                            <span><span class="en">Explosion limits, ignition, and mitigation.</span><span class="zh">爆炸极限、自燃与风险抑制。</span></span>
+                        </div>
+                        <div class="signal-card">
+                            <strong><span class="en">Battery Venting</span><span class="zh">电池排气</span></strong>
+                            <span><span class="en">Venting behavior, ignition risk, and safety assessment.</span><span class="zh">排气行为、点火风险与安全评估。</span></span>
+                        </div>
+                        <div class="signal-card">
+                            <strong><span class="en">Aviation Power</span><span class="zh">航空动力</span></strong>
+                            <span><span class="en">Safety-first energy systems.</span><span class="zh">安全优先的能源与动力系统。</span></span>
+                        </div>
+                    </div>
                     <div class="hero-actions" aria-label="Quick links">
                         <a class="button" href="#publications"><span class="en">View Publications</span><span class="zh">查看论文</span></a>
                         <a class="button secondary" href="#contact"><span class="en">Contact</span><span class="zh">联系我</span></a>
@@ -681,13 +827,16 @@
                         <h2><span class="en">Academic Network</span><span class="zh">学术关系</span></h2>
                         <ul class="link-list">
                             <li>
+                                <strong><a href="https://cte.cqu.edu.cn/szdw/jslb/gxl.htm"><span class="en">Gou Xiaolong</span><span class="zh">苟小龙</span></a></strong>
+                            </li>
+                            <li>
+                                <strong><a href="http://yjsgl.cqjtu.edu.cn/gmis/dsfc/dsfcgrxx/c005ca382363525301009c33460d1215"><span class="en">He Yituan</span><span class="zh">何义团</span></a></strong>
+                            </li>
+                            <li>
                                 <strong><a href="https://scholar.google.com/citations?user=BUFHPfIAAAAJ&amp;hl=zh-CN"><span class="en">Meng Qingyang</span><span class="zh">孟庆洋</span></a></strong>
                             </li>
                             <li>
                                 <strong><a href="http://yjsgl.cqjtu.edu.cn/gmis/dsfc/dsfcgrxx/9bc7468a7b3bc22e4759a29a65c6a62f"><span class="en">Yu Jin</span><span class="zh">禹进</span></a></strong>
-                            </li>
-                            <li>
-                                <strong><a href="https://cte.cqu.edu.cn/szdw/jslb/gxl.htm"><span class="en">Gou Xiaolong</span><span class="zh">苟小龙</span></a></strong>
                             </li>
                             <li>
                                 <strong><a href="https://blog.nus.edu.sg/huangwei/"><span class="en">Zhang Huangwei</span><span class="zh">张黄伟</span></a></strong>
@@ -718,8 +867,8 @@
                     <section id="about">
                         <h2><span class="en">About</span><span class="zh">简介</span></h2>
                         <p class="section-copy">
-                            <span class="en">My research focuses on combustion and explosion phenomena in energy systems, with recent work spanning lithium-ion battery vent gases, hydrogen safety, droplet and spray effects, autoignition, and kinetic modeling for practical fuels.</span>
-                            <span class="zh">我的研究聚焦能源系统中的燃烧与爆炸现象，近期工作涉及锂离子电池泄放气体、氢能安全、液滴与喷雾效应、自燃以及实际燃料化学动力学建模等方向。</span>
+                            <span class="en">My research focuses on green aviation and new energy safety, with particular interest in hydrogen applications, combustion and explosion suppression, lithium-ion battery thermal runaway, and complex reaction kinetics. I combine experimental testing, numerical simulation, chemical kinetic analysis, and intelligent optimization methods to reveal the catastrophic evolution mechanisms of high-risk energy systems and to explore safer, more efficient, and more sustainable prevention and control strategies. Beyond research, I am also committed to engineering education and research training, aiming to explain complex energy safety problems in a clear, rigorous, and thoughtful way, and to strengthen the connection among academic research, engineering practice, and public understanding.</span>
+                            <span class="zh">我主要从事绿色航空与新能源安全相关研究，关注氢能应用、燃烧与爆炸抑制、锂电池热失控及复杂反应动力学等问题。我的研究结合实验测试、数值模拟、化学反应机理分析与智能优化方法，致力于揭示高风险能源系统中的灾变演化规律，并探索更安全、高效、可持续的防控策略。除科研工作外，我也长期关注工程教育与科研训练，希望以清晰、严谨而富有温度的方式，将复杂的能源安全问题讲明白，推动学术研究、工程应用与公众理解之间的连接。</span>
                         </p>
                     </section>
 
@@ -765,10 +914,16 @@
 
                     <section id="students">
                         <h2><span class="en">Graduate Students</span><span class="zh">指导研究生</span></h2>
+                        <p class="admission-note">
+                            <strong><span class="en">Prospective Students</span><span class="zh">招生信息</span></strong>
+                            <span class="en">Students from mechanical engineering, energy and power engineering, aviation engineering, and related fields are warmly welcome to apply.</span>
+                            <span class="zh">欢迎机械工程、能源与动力工程、航空工程等相关专业的学生报考。</span>
+                        </p>
                         <ul class="student-list">
                             <li>
                                 <strong><span class="en">Junwen Huang</span><span class="zh">黄俊文</span></strong>
                                 <span class="student-year"><span class="en">M.S. Year 2</span><span class="zh">硕士二年级</span></span>
+                                <span class="student-advisor"><span class="en">Co-advised: Yu Jin</span><span class="zh">合作指导：禹进</span></span>
                                 <p><span class="en">Research on safety issues associated with lithium-ion battery vent gases.</span><span class="zh">从事锂离子电池排气安全相关研究。</span></p>
                             </li>
                             <li>
@@ -779,6 +934,7 @@
                             <li>
                                 <strong><span class="en">Qiuyi Yang</span><span class="zh">杨秋怡</span></strong>
                                 <span class="student-year"><span class="en">M.S. Year 1</span><span class="zh">硕士一年级</span></span>
+                                <span class="student-advisor"><span class="en">Co-advised: He Yituan</span><span class="zh">合作指导：何义团</span></span>
                                 <p><span class="en">Research on liquid hydrogen safety and related hazard mitigation.</span><span class="zh">从事液氢安全及相关风险防控研究。</span></p>
                             </li>
                         </ul>
@@ -901,7 +1057,7 @@
 
     <script>
         (() => {
-            const storageKey = "wang-zijun-homepage-language";
+            const languageStorageKey = "wang-zijun-homepage-language";
             const toggle = document.querySelector("[data-lang-toggle]");
             const setLanguage = (language) => {
                 const nextLanguage = language === "zh" ? "zh" : "en";
@@ -910,10 +1066,10 @@
                 if (toggle) {
                     toggle.setAttribute("aria-pressed", String(nextLanguage === "zh"));
                 }
-                localStorage.setItem(storageKey, nextLanguage);
+                localStorage.setItem(languageStorageKey, nextLanguage);
             };
 
-            setLanguage(localStorage.getItem(storageKey) || "en");
+            setLanguage(localStorage.getItem(languageStorageKey) || "en");
 
             if (toggle) {
                 toggle.addEventListener("click", () => {
