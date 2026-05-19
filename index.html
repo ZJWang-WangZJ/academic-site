@@ -290,6 +290,25 @@
             font-size: 0.98rem;
         }
 
+        .icon-link,
+        .scholar-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-icon,
+        .scholar-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+        }
+
+        .contact-icon {
+            color: var(--accent);
+            flex: 0 0 auto;
+        }
+
         .tag-list {
             display: flex;
             flex-wrap: wrap;
@@ -351,18 +370,23 @@
 
         .timeline {
             display: grid;
-            gap: 14px;
+            gap: 0;
             margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .timeline li {
-            padding: 17px 18px;
+            padding: 4px 18px;
             border: 1px solid var(--line);
             border-left: 4px solid var(--safety);
             border-radius: 6px;
             background: var(--panel);
+            list-style: none;
+        }
+
+        .timeline li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline li:last-child {
+            border-bottom: 0;
         }
 
         .timeline strong {
@@ -806,15 +830,25 @@
                         <h2><span class="en">Contact</span><span class="zh">联系方式</span></h2>
                         <ul class="link-list">
                             <li>
-                                <span><span class="en">Email</span><span class="zh">邮箱</span></span>
-                                <strong><a href="mailto:zijun.wang@cqjtu.edu.cn">zijun.wang@cqjtu.edu.cn</a></strong>
+                                <strong>
+                                    <a class="icon-link" href="mailto:zijun.wang@cqjtu.edu.cn" aria-label="Email">
+                                        <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                            <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>zijun.wang@cqjtu.edu.cn</span>
+                                    </a>
+                                </strong>
                             </li>
                             <li>
-                                <span>Google Scholar</span>
-                                <strong><a href="https://scholar.google.com.hk/citations?hl=zh-CN&amp;user=TY1vSZoAAAAJ&amp;view_op=list_works"><span class="en">Profile</span><span class="zh">学术主页</span></a></strong>
+                                <strong>
+                                    <a class="scholar-link" href="https://scholar.google.com.hk/citations?hl=zh-CN&amp;user=TY1vSZoAAAAJ&amp;view_op=list_works" aria-label="Google Scholar">
+                                        <img class="scholar-icon" src="https://scholar.google.com/favicon.ico" alt="">
+                                        <span>Google Scholar</span>
+                                    </a>
+                                </strong>
                             </li>
                             <li>
-                                <span><span class="en">Academic Profile</span><span class="zh">学院主页</span></span>
                                 <strong><a href="http://cqia.cqjtu.edu.cn/info/1295/3762.htm">CQJTU</a></strong>
                             </li>
                         </ul>
