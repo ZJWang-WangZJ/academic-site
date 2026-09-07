@@ -15,7 +15,7 @@ Open `index.html` directly, or run `node scripts/preview.cjs` and visit <http://
 
 Keep the Chinese (`.zh`) and English (`.en`) text in sync. The homepage starts in Chinese and remembers the visitor's language choice when browser storage is available.
 
-Publications are grouped by year. Projects use separate columns for title, role, period, and funding; missing dates and funding are left empty. Advanced Gas Dynamics is a graduate course; the other three courses are undergraduate courses. The masthead stays at the top while scrolling, with matching offsets for section links and the desktop sidebar.
+Publications are grouped by year. Projects use separate columns for title, role, period, and funding; missing dates and funding are left empty. Advanced Gas Dynamics is a graduate course; the other three courses are undergraduate courses. The masthead scrolls normally with the page; section links and the desktop sidebar use ordinary top spacing.
 
 The feedback form prepares a `mailto:` draft for the visitor to send through their email application. It does not store or send messages on a server.
 
